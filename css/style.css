@@ -1,0 +1,27 @@
+
+#carrito {
+    display: none;
+    position: fixed;
+    top: 10%;
+    right: 2%;
+    width: auto;
+    height: auto;
+    background-color: rgb(47, 255, 252);
+    z-index: 1001;
+    border-style: double;
+    text-align: left;
+}
+
+.navbar{
+    position: fixed;
+}
+
+#productos{
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap ;
+}
+
+.card{
+    text-align: center;
+}

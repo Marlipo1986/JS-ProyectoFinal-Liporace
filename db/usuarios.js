@@ -3,7 +3,7 @@ export let dBusuarios = [
   {
     id: 1,
     user: "Martin",
-    Pass: "123qwe",
+    pass: "123456",
     admin: true,
   },
 ];

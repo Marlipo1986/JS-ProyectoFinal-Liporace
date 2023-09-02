@@ -78,6 +78,8 @@ export const generarCardsProductos = (productos) => {
       const btnEliminar = document.getElementById(`eliminar${id}`);
       btnComprar.addEventListener("click", () => eliminarProducto(id));
     }
+
+    
   });
 };
 

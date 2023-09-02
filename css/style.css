@@ -1,27 +1,33 @@
-
 #carrito {
-    display: none;
-    position: fixed;
-    top: 10%;
-    right: 2%;
-    width: auto;
-    height: auto;
-    background-color: rgb(47, 255, 252);
-    z-index: 1001;
-    border-style: double;
-    text-align: left;
+  display: none;
+  position: fixed;
+  top: 10%;
+  right: 2%;
+  width: auto;
+  height: auto;
+  background-color: rgb(47, 255, 252);
+  z-index: 1001;
+  border-style: double;
+  text-align: left;
 }
 
-.navbar{
-    position: fixed;
+#productos {
+  margin-top: 60px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-#productos{
-    margin-top: 60px;
-    display: flex;
-    flex-wrap: wrap ;
+.card {
+  text-align: center;
 }
 
-.card{
-    text-align: center;
+.barraBusqueda {
+  text-align: center;
+  align-items: center;
+}
+
+img {
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
 }

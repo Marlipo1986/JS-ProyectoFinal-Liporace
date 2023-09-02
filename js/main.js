@@ -1,10 +1,11 @@
 //Importa el carrito de comandas desde el respectivo JS
-import { comprarProducto } from "./comandas.js"; 
+import { comprarProducto } from "./comandas.js";
 
 //Importa elementos del HTML
 const userLogin = document.getElementById("userLogin");
 const divProductos = document.getElementById("productos");
-const inputFilter = document.getElementById("filtro__input");
+const filterInput = document.getElementById("filtro__input");
+const filterHeader = document.getElementById("filter__header");
 
 export let productosDisponibles = JSON.parse(localStorage.getItem("productos"));
 let usuarioIngresado = JSON.parse(sessionStorage.getItem("usuario"));
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     p.innerHTML = `Hola, ${usuarioIngresado.user}!`;
     close.id = "Cerrar sesión";
-    close.innerHTML = "Cerrar Sesión"
+    close.innerHTML = "Cerrar Sesión";
     close.addEventListener("click", () => {
       alert(
         `Gracias por confiar en nosotros, ${usuarioIngresado.user}. Has sido desloggeado correctamente`
@@ -35,14 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
     userLogin.appendChild(p);
     userLogin.appendChild(close);
   }
-  
+
   //Exhibicion de comidas disponibles para ordenar por la aplicacion
 
   generarCardsProductos(productosDisponibles);
 });
 
-
-// Codigo para obtener comidas disponibles a ser reflejadas en la pagina
+// Codigo para obtener comidas disponibles a ser reflejadas en la pagina - cards de platos
 
 export const generarCardsProductos = (productos) => {
   divProductos.innerHTML = "";
@@ -60,6 +60,12 @@ export const generarCardsProductos = (productos) => {
                 <p class="card-text">${categoria}</p>
                 <p class="card-text">$${precio}</p>
                 <button id="boton${id}" class="btn btn-primary">Comprar</button>
+
+                ${
+                  usuarioIngresado?.admin === true
+                    ? `<button id="eliminar${id}" class="btn btn-danger">Eliminar</button>`
+                    : ""
+                }
             </div>
         </div>`;
 
@@ -67,15 +73,44 @@ export const generarCardsProductos = (productos) => {
 
     const btnComprar = document.getElementById(`boton${id}`);
     btnComprar.addEventListener("click", () => comprarProducto(id));
+
+    if (usuarioIngresado?.admin === true) {
+      const btnEliminar = document.getElementById(`eliminar${id}`);
+      btnComprar.addEventListener("click", () => eliminarProducto(id));
+    }
   });
 };
 
 //Filtros por barra de busqueda
-inputFilter.addEventListener("keyup", (e) =>{
-const productosFilter = productos.filter((produc) => producto.nombre.toLowerCase().includes(e.target.value))
 
+filterInput.addEventListener("keyup", (e) => {
+  const productosFilter = productosDisponibles.filter((producto) =>
+    producto.nombre.toLowerCase().includes(e.target.value)
+  );
 
+  productosDisponibles = productosFilter;
 
-})
+  if (e.target.value !== "") {
+    generarCardsProductos(productosFilter);
+  } else {
+    productosDisponibles = JSON.parse(localStorage.getItem("productos"));
+    generarCardsProductos(productosDisponibles);
+  }
+});
 
+//Filtros por categorias en el header - siempre hay que volver a todos para rellenar el storage
 
+filterHeader.addEventListener("click", (e) => {
+  const productosFilter = productosDisponibles.filter((producto) =>
+    producto.categoria.toLowerCase().includes(e.target.innerHTML.toLowerCase())
+  );
+
+  productosDisponibles = productosFilter;
+
+  if (e.target.innerHTML !== "Todos") {
+    generarCardsProductos(productosFilter);
+  } else {
+    productosDisponibles = JSON.parse(localStorage.getItem("productos"));
+    generarCardsProductos(productosDisponibles);
+  }
+});

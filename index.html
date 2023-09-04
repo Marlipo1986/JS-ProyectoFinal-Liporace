@@ -43,9 +43,16 @@
             <p id="contador__carrito"></p>
         <!-- </div> -->
       </nav>
+      
+      
       <div class="barraBusqueda">
         <p>Qué quiere ordenar hoy?</p>
         <input type="text" id="filtro__input">
+      </div>
+      <div class="botones__admin">
+      <button id="btn__modificar" class="btn btn-info">Modificar</button>
+      <button id="nuevo__producto" class="btn btn-success">Agregar</button>
+      <div id="form__agregar"></div> 
       </div>
       <div id="productos"></div>
       <div id="carrito">
@@ -54,7 +61,7 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Un.</th>
-                    <th>Unitario</th>
+                    <th>$ Un.</th>
                     <th>Total</th>
                     <th>Acciones</th>
                 </tr>
@@ -63,6 +70,8 @@
             <tfoot id="totales"></tfoot>
         </table>
       </div>
+
+      <footer>Trabajo final JS - 2023 Coderhouse - Martin Liporace</footer>
 
     <!-- LINK A BOOTSTRAP -->
     <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

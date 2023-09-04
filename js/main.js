@@ -1,5 +1,6 @@
 //Importa el carrito de comandas desde el respectivo JS
 import { comprarProducto } from "./comandas.js";
+import { eliminarProducto } from "./administrador.js";
 
 //Importa elementos del HTML
 const userLogin = document.getElementById("userLogin");
@@ -76,7 +77,7 @@ export const generarCardsProductos = (productos) => {
 
     if (usuarioIngresado?.admin === true) {
       const btnEliminar = document.getElementById(`eliminar${id}`);
-      btnComprar.addEventListener("click", () => eliminarProducto(id));
+      btnEliminar.addEventListener("click", () => eliminarProducto(id));
     }
 
     

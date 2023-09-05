@@ -1,3 +1,5 @@
+
+//Base de datos de usuarios iniciales
 export let dBusuarios = [
   //usuario generado por defecto cuando se carga la pagina
   {

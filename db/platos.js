@@ -1,3 +1,4 @@
+//Base de datos de productos
 export const productos = [
   {
     id: 1,

@@ -1,3 +1,4 @@
+
 #carrito {
   display: none;
   position: fixed;
@@ -16,10 +17,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.card {
-  text-align: center;
+  gap: 12px;
 }
 
 .barraBusqueda {
@@ -33,13 +31,14 @@ img {
   object-fit: cover;
 }
 
-#agregar__producto{
+#agregar__producto {
   display: none;
 }
 
-.botones__admin{
+.botones__admin {
+  margin-top: 12px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 10px;
+  gap: 12px
 }

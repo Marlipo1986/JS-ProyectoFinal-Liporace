@@ -3,10 +3,19 @@ import { comprarProducto } from "./comandas.js";
 import { eliminarProducto } from "./administrador.js";
 
 //Importa elementos del HTML
+document.getElementById("theme-select").addEventListener("change", (e=>{
+const t = e.target.value;
+  document.body.classList.add("animate-all"),
+  document.documentElement.setAttribute("data-theme", t),
+  setTimeout((e=>document.body.classList.remove("animate-all")), 500)
+}
+));
 const userLogin = document.getElementById("userLogin");
 const divProductos = document.getElementById("productos");
 const filterInput = document.getElementById("filtro__input");
 const filterHeader = document.getElementById("filter__header");
+
+//Recuperacion de info desde el DOM
 
 export let productosDisponibles = JSON.parse(localStorage.getItem("productos"));
 let usuarioIngresado = JSON.parse(sessionStorage.getItem("usuario"));
@@ -27,15 +36,16 @@ document.addEventListener("DOMContentLoaded", () => {
     close.id = "Cerrar sesión";
     close.innerHTML = "Cerrar Sesión";
     close.addEventListener("click", () => {
-      alert(
-        `Gracias por confiar en nosotros, ${usuarioIngresado.user}. Has sido desloggeado correctamente`
-      );
-
       sessionStorage.removeItem("usuario");
       location.reload();
+      swal.fire({
+        position: "top-end",
+        title: 'Gracias por confiar en nosotros!',
+        timer: 1500,
+      });
     });
     userLogin.appendChild(p);
-    userLogin.appendChild(close);
+    userLogin.appendChild(close); 
   }
 
   //Exhibicion de comidas disponibles para ordenar por la aplicacion

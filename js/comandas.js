@@ -1,5 +1,7 @@
+//Importar JS de otros modulos
 import { productosDisponibles } from "./main.js";
 
+//Interaccion con el DOM
 JSON.parse(sessionStorage.getItem("carrito")) === null &&
   sessionStorage.setItem("carrito", JSON.stringify([]));
 
@@ -7,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   dibujarCarrito();
 });
 
+//Conformacion del carrito
 let carrito = JSON.parse(sessionStorage.getItem("carrito"));
 
 const listaCarrito = document.getElementById("items");
@@ -24,7 +27,7 @@ btnCarrito.addEventListener("click", () => {
     dibujarCarrito();
   }
 });
-
+//Agregado de productos a la comanda
 export const comprarProducto = (idProducto) => {
   const producto = productosDisponibles.find(
     (producto) => producto.id === idProducto
@@ -60,9 +63,15 @@ export const comprarProducto = (idProducto) => {
   }
   carrito = JSON.parse(sessionStorage.getItem("carrito"));
   dibujarCarrito();
-  alert(`Agregamos ${nombre} a la orden`);
+  swal.fire({
+    position: "top-end",
+    icon: 'success',
+    title: 'Agregado a la comanda...',
+    timer: 1500,
+  });
 };
 
+//dibujo de la comanda actual en pantalla
 function dibujarCarrito() {
   listaCarrito.innerHTML = "";
 

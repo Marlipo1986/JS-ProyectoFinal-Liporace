@@ -67,11 +67,20 @@ const validarYregistrar = (nuevoUsuario) => {
     usuarios.push(nuevoUsuario);
     localStorage.setItem("usuarios", JSON.stringify(usuarios)); //actualizacion de usuarios en base de datos
     sessionStorage.setItem("usuario", JSON.stringify(nuevoUsuario)); //para mantener la sesion iniciada
-    alert(
-      `Gracias ${nuevoUsuario.user} por registrarte en Restaurapp, ya podes iniciar sesión`
-    );
+    swal.fire({
+      position: "top-end",
+      icon: 'success',
+      title: 'Registro exitoso. Ya puedes iniciar sesión!',
+      timer: 1500,
+    })
+;
   } else {
-    alert(`El usuario ya existe`);
+    swal.fire({
+      position: "top-end",
+      icon: 'warning',
+      title: 'El usuario ya existe',
+      timer: 1500,
+    });
   }
   sessionStorage.setItem("usuario", JSON.stringify(usuario));
   location.href = "../index.html";

@@ -90,7 +90,7 @@ const generarFormAgregar = () => {
         agregarProductos.style.display = "none"
     })
 };
-
+//Agregando productos a la base de datos
 const guardarProducto = () => {
     const nombre = agregarProductos.children[0][0].value;
     const precio = agregarProductos.children[0][1].value;
@@ -98,14 +98,25 @@ const guardarProducto = () => {
     const categoria = agregarProductos.children[0][3].value;
 
     if(nombre !== "" && precio !=="" && imagen !== "" && categoria !== ""){
-        const nuevoProducto = new Productos(nombre,precio,imagen,categoria)
-        productosDisponibles.push(nuevoProducto)
-        localStorage.setItem("productos",JSON.stringify(productosDisponibles))
-        agregarProductos.style.display = "none"
+        const nuevoProducto = new Productos(nombre,precio,imagen,categoria);
+        productosDisponibles.push(nuevoProducto);
+        localStorage.setItem("productos",JSON.stringify(productosDisponibles));
+        agregarProductos.style.display = "none";
 
-        generarCardsProductos(productosDisponibles)
+        generarCardsProductos(productosDisponibles);
+        swal.fire({
+            position: "top-end",
+            icon: 'success',
+            title: 'Nuevo producto agregado exitosamente',
+            timer: 1500,
+          });
     } else {
-        alert ("Por favor, completar todos los campos")
+        swal.fire({
+            position: "top-end",
+            icon: 'warning',
+            title: 'Por favor, completar todos los campos',
+            timer: 1500,
+          });
     }
 };
 
@@ -144,7 +155,7 @@ const modificarProductosCard = () => {
         btnCancelar.addEventListener("click", () => generarCardsProductos (productosDisponibles))
     })
 };
-
+//Codigo para modificar productos existentes
 const modificarProductos = (e,id) => {
     const productoIndice = productosDisponibles.findIndex((producto) => producto.id === id)
     const imagen = e.target.parentElement.parentElement.children[1].children[0].value;
